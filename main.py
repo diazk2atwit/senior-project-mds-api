@@ -1,7 +1,14 @@
 from fastapi import *
 from api import *
+from mangum import Mangum
 
 app = FastAPI()
+handler = Mangum(app)
+
+
+@app.get('/', status_code=200)  # use http://127.0.0.1:8000/get_url_report?url= within search bar
+async def get_url_report(url: str):
+    return {'Malware Detection System (MDS) API'}
 
 
 @app.get('/get_url_report', status_code=200)  # use http://127.0.0.1:8000/get_url_report?url= within search bar
