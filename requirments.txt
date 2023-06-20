@@ -1,0 +1,6 @@
+fastapi
+python-multipart
+asyncio
+httpx
+python-decouple
+uvicorn
