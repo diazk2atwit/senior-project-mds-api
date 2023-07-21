@@ -31,7 +31,7 @@ def hash_file(file_name):
 #############
 # EndPoints #
 #############
-async def test_scan_url(url):
+async def scan_url(url):
     with virustotal_python.Virustotal(API_KEY) as vtotal:
         try:
             resp = vtotal.request("urls", data={"url":url}, method='POST')
@@ -68,7 +68,7 @@ async def test_scan_url(url):
             return report.data
 
 
-async def test_scan_file(file_name):
+async def scan_file(file_name):
     files = {"file": (file_name, open(file_name, "rb"))}
 
     with virustotal_python.Virustotal(API_KEY) as vtotal:
@@ -77,7 +77,7 @@ async def test_scan_file(file_name):
         return resp.data
 
 
-async def test_retrieve_file(file_name):
+async def retrieve_file(file_name):
     file_hash = hash_file(file_name)
 
     with virustotal_python.Virustotal(API_KEY) as vtotal:

@@ -1,6 +1,6 @@
 from fastapi import *
 from api import *
-from test import *
+# from test import *
 from database import *
 from mangum import Mangum
 import asyncio
@@ -67,7 +67,7 @@ async def home():
 #     return result
 
 
-@app.post("/TEST_post_file_report", status_code=201)
+@app.post("/post_file_report", status_code=201)
 async def get_file_report(file: UploadFile = File(...)):
     try:
         contents = file.file.read()
@@ -88,16 +88,16 @@ async def get_file_report(file: UploadFile = File(...)):
         return temp
 
     print(file.filename)
-    result = await test_scan_file("file")
+    result = await scan_file("file")
 
     return result
 
 
-@app.get("/TEST_get_file_report", status_code=200)
+@app.get("/get_file_report", status_code=200)
 async def get_file_report():
     hash_of_file = hash_file("file")
     await asyncio.sleep(5)
-    result = await test_retrieve_file("file")
+    result = await retrieve_file("file")
     print(result)
 
     insert_file_doc(hash_of_file, result)
@@ -105,8 +105,8 @@ async def get_file_report():
     return result
 
 
-@app.get("/TEST_get_url_report", status_code=200)
-async def test_get_url_report(url: str):
+@app.get("/get_url_report", status_code=200)
+async def get_url_report(url: str):
 
     # Checks Database and Returns if Found
     temp = get_url_doc(url)
@@ -115,7 +115,7 @@ async def test_get_url_report(url: str):
         return temp
 
     # Scans URL and returns the report in json
-    result = await test_scan_url(url)
+    result = await scan_url(url)
 
     insert_url_doc(url, result)
 

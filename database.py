@@ -21,7 +21,6 @@ client = MongoClient(connection_string)
 ###########################
 production_db = client["production"]  # Production Database
 
-person_collection = production_db["person_collection"]  # Person Collection
 file_collection = production_db["file_collection"]  # File Collection
 url_collection = production_db["url_collection"]  # URL Collection
 
