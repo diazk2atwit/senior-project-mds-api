@@ -1,4 +1,5 @@
 from fastapi import *
+from fastapi.middleware.cors import CORSMiddleware
 from api import *
 # from test import *
 from database import *
@@ -7,6 +8,20 @@ import asyncio
 
 app = FastAPI()
 handler = Mangum(app)
+
+# adding cors url
+origins = [
+    '*'
+]
+
+# add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers={"*"}
+)
 
 
 #############
@@ -98,7 +113,7 @@ async def get_file_report():
     hash_of_file = hash_file("file")
     await asyncio.sleep(5)
     result = await retrieve_file("file")
-    print(result)
+    # print(result)
 
     insert_file_doc(hash_of_file, result)
 
