@@ -1,5 +1,3 @@
-# senior-project-mds-api
- 
 # Malware Detection System - API
 
 ## About the project
