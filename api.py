@@ -1,5 +1,4 @@
 import virustotal_python
-from pprint import pprint
 import hashlib
 import asyncio
 from base64 import urlsafe_b64encode
@@ -46,12 +45,8 @@ async def scan_url(url):
                 await asyncio.sleep(10)
                 report = vtotal.request(f"urls/{url_id}")
 
-            # print(report)
-            # pprint(report.object_type)
-            # pprint(report.data)
             return report.data
         except virustotal_python.VirustotalError as err:
-            # print(f"Failed to send URL: {url} for analysis and get the report: {err}")
             await asyncio.sleep(10)
             report = vtotal.request(f"urls/{url_id}")
 
@@ -62,9 +57,6 @@ async def scan_url(url):
                 await asyncio.sleep(10)
                 report = vtotal.request(f"urls/{url_id}")
 
-            # print(report)
-            # pprint(report.object_type)
-            # pprint(report.data)
             return report.data
 
 
@@ -73,7 +65,7 @@ async def scan_file(file_name):
 
     with virustotal_python.Virustotal(API_KEY) as vtotal:
         resp = vtotal.request("files", files=files, method="POST")
-        pprint(resp.json())
+
         return resp.data
 
 
@@ -82,7 +74,6 @@ async def retrieve_file(file_name):
 
     with virustotal_python.Virustotal(API_KEY) as vtotal:
         resp = vtotal.request(f"files/{file_hash}")
-        pprint(resp.data)
 
         count = 1
         while resp.data['attributes']['last_analysis_results'] == {}:
