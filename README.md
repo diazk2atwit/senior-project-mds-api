@@ -16,8 +16,8 @@ Allows users to scan hyperlinks and files to detect malware
 ![screenshot](./public/fastapi.png)
 
 ### MongoDB
-**URL Collection**
+**URL Collection**   
 ![screenshot](./public/mongodb-url-collection.png)
 
-**File Collection**
+**File Collection**   
 ![screenshot](./public/mongodb-file-collection.png)
