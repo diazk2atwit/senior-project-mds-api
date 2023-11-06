@@ -12,6 +12,9 @@ file
 # test.py
 test.py
 
+# favicon
+favicon.ico
+
 # Distribution / packaging
 .Python
 build/
